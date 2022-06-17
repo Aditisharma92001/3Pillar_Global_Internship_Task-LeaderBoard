@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1> 30 Days of challenge Leaderboard </h1>
+    <div class="container">
+       
+        <div id="newtask">
+            
+            <input type="text" id="input1" placeholder="First name" style="width: 150px; height: 30px; font-family: cambria, Arial, Helvetica, sans-serif; font-size: large; border-color: #dca9e0;" required>
+            <input type="text" id="input2" placeholder="Last name" style="width: 150px; height: 30px; font-family: cambria, Arial, Helvetica, sans-serif; font-size: large; border-color: #dca9e0;" required>
+            <input type="text" id="input3" placeholder="Country" style="width: 150px; height: 30px; font-family: cambria, Arial, Helvetica, sans-serif; font-size: large; border-color: #dca9e0;" required>
+            <input type="number" id="input4" placeholder="PlayerScore" style="width: 150px; height: 30px; font-family: cambria, Arial, Helvetica, sans-serif; font-size: large; border-color: #dca9e0;" required>
+           
+            <button id="push" style="width: 150px; height: 36px; font-family: cambria, Arial, Helvetica, sans-serif; font-size: large;">Add Player</button>
+           
+        </div>
+        <div id="tasks">  </div>
+    </div>  
+    <script type="text/javascript">
+        document.querySelector('#push').onclick = function(){
+            if(document.querySelector('#newtask input').value.length == 0){
+                alert("All fields are required");
+            }
+            
+            else{
+               
+                document.querySelector('#tasks').innerHTML += `
+                    <div class="task">
+                        <span id="taskname" class="taskname">
+                            ${document.querySelector('#input1').value}&nbsp 
+                        
+                            ${document.querySelector('#input2').value}&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                        
+                            ${document.querySelector('#input3').value}&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
+                        
+                            ${document.querySelector('#input4').value}&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                           
+                        </span>
+                        <button class="delete">
+                            <i class="far fa-trash-alt"></i> 
+                        </button>
+
+                        <button class="plus" onclick="buyButtonClickAdd()">
+                             +5
+                        </button>
+
+                        <button class="minus">
+                             -5
+                        </button>
+                    
+                    </div>
+                `;
+        
+                var current_tasks = document.querySelectorAll(".delete");
+                for(var i=0; i<current_tasks.length; i++){
+                    current_tasks[i].onclick = function(){
+                        this.parentNode.remove();
+                    }
+                }
+
+                var plusfive = document.querySelectorAll(".plus");
+                let add = 5;
+                for(var i=0; i<plusfive.length; i++){
+                    plusfive[i].onclick = function(){
+                        input4 = +document.getElementById('input4').value
+                        document.getElementById('input4').value = Math.max(0, input4 + add);
+                    }
+                }
+
+                var minusfive = document.querySelectorAll(".minus");
+                let sub = 5;
+                for(var i=0; i<minusfive.length; i++){
+                    minusfive[i].onclick = function(){
+                        input4 = +document.getElementById('input4').value
+                        document.getElementById('input4').value = Math.max(0, input4 - sub);
+                    }
+                }
+            }
+        }
+        </script>
+          
+</body>
+</html>
